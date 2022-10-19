@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: spring-cloud-user
+  cloud:
+    config:
+      uri: @uri@
+      name: user
+      profile: @package.environment@  # 对应{profile}部分
+      fail-fast: true

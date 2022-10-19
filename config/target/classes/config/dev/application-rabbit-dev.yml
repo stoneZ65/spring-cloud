@@ -1,0 +1,20 @@
+spring:
+  #rabbitmq
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    # publisher-confirms：设置为true时。当消息投递到Exchange后，会回调confirm()方法进行通知生产者
+    publisher-confirms: true
+    # publisher-returns：设置为true时。当消息匹配到Queue并且失败时，会通过回调returnedMessage()方法返回消息
+    #publisher-returns: true
+    # spring.rabbitmq.template.mandatory: 设置为true时。指定消息在没有被队列接收时会通过回调returnedMessage()方法退回。
+    template:
+      mandatory: true
+    listener:
+      simple:
+        acknowledge-mode: manual # 手动ack模式
+        default-requeue-rejected: false # 该配置项是决定由于监听器抛出异常而拒绝的消息是否被重新放回队列。默认值为true。
+        concurrency: 1 # 最少消费者数量
+        max-concurrency: 10 # 最大消费者数量

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lolaage.user.dao.mapper.UserMapper">
+
+    <!-- 通用查询结果列 -->
+    <sql id="baseColumnList">
+        t.f_id AS id,
+        t.f_username AS username,
+        t.f_password AS password,
+        t.f_name AS name,
+        t.f_office_level AS officeLevel,
+        t.f_offic_position AS officPosition,
+        t.f_departments AS departments,
+        t.f_job_title AS jobTitle,
+        t.f_profession AS profession,
+        t.f_offic_position_name as officPositionName,
+        t.f_telephone AS telephone,
+        t.f_mgc_phone AS mgcPhone,
+        t.f_home_phone AS homePhone,
+        t.f_office_phone AS officePhone,
+        t.f_card_type AS cardType,
+        t.f_card_no AS cardNo,
+        t.f_gender AS gender,
+        t.f_birthday AS birthday,
+        t.f_nation AS nation,
+        t.f_person_type AS personType,
+        t.f_is_login AS isLogin,
+        t.f_fax AS fax,
+        t.f_email AS email,
+        t.f_data_source AS dataSource,
+        t.f_region AS region,
+        t.f_company AS company,
+        t.f_duty AS duty,
+        t.f_remark AS remark,
+        t.f_avatar AS avatar,
+        t.f_reg_type AS regType,
+        t.f_is_enable AS isEnable,
+        t.f_open_id AS openId,
+        t.f_union_id AS unionId,
+        t.f_hometown AS hometown,
+        t.f_level_of_education AS levelOfEducation,
+        t.f_address AS address,
+        t.f_job_time AS jobTime,
+        t.f_veteran_or_not AS veteranOrNot,
+        t.f_work_permit_type AS workPermitType,
+        t.f_work_permit_number AS workPermitNumber,
+        t.f_identity_tags AS identityTags,
+        t.f_isdeleted AS isdeleted,
+        t.f_update_time AS updateTime,
+        t.f_create_time AS createTime
+    </sql>
+
+    <select id="page" resultType="com.demo.user.model.User" parameterType="com.demo.user.request.UserQueryDto">
+        select
+        <include refid="baseColumnList"/>
+        from t_user t
+        <where>
+            t.f_isdeleted = 0
+            <if test="dto !=null">
+                <if test="dto.name !=null and dto.name !=''">
+                    and t.f_name like concat('%',#{dto.name},'%')
+                </if>
+            </if>
+        </where>
+    </select>
+</mapper>

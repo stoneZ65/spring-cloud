@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: spring-cloud-chat
+  cloud:
+    config:
+      uri: @uri@
+      name: chat
+      profile: @package.environment@  # 对应{profile}部分
+      fail-fast: true

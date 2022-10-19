@@ -1,0 +1,7 @@
+# 服务端口
+server:
+  port: 8094
+
+spring:
+  profiles:
+    include: base-dev,rabbit-dev,db-dev
